@@ -59,7 +59,7 @@ let g_yRotation = 0;
 
 let g_isPoking = false;
 let g_pokeStartTime = 0;
-let g_pokeDuration = 1.5; 
+let g_pokeDuration = 8; 
 
 function setupWebGL() {
   // Retrieve <canvas> element
@@ -238,13 +238,26 @@ function updateAnimationAngles() {
       if (progress < 0.3) {
         const curlProgress = progress / 0.3;
         g_bodyAngle = 90 * curlProgress;
-        g_frontLegsAngle = 30 * curlProgress;
-        g_backLegsAngle = 30 * curlProgress;
+        g_frontLeftLegAngle = -90 * curlProgress;
+        g_frontRightLegAngle = -90 * curlProgress;
+        g_backLeftLegAngle = -90 * curlProgress;
+        g_backRightLegAngle = -90 * curlProgress;
         g_headAngleX = -60 * curlProgress;
         g_tailAngle = 45 * curlProgress;
         g_tailSegment2Angle = 30 * curlProgress;
         g_tailTipAngle = 20 * curlProgress;
-        g_bodyHopOffset = -0.1;
+        g_bodyHopOffset = -0.2 * curlProgress;
+      } else if (progress < 0.6) {
+        const settleProgress = (progress - 0.3) / 0.3;
+        g_headAngle = 20 * Math.sin(settleProgress * 4);
+      } else {
+        const sleepProgress = (progress - 0.6) / 0.4;
+        g_bodyHopOffset = -0.2 + 0.005 * Math.sin(sleepProgress * Math.PI * 1);
+        g_headAngle = -15 + 3 * Math.sin(sleepProgress * Math.PI * 4);
+        g_headAngleX = -55 + 4 * Math.sin(sleepProgress * Math.PI * 4 + 0.5);
+        g_tailAngle = 45 + 2 * Math.sin(sleepProgress * Math.PI * 6);
+        g_tailSegment2Angle = 30 + 2 * Math.sin(sleepProgress * Math.PI * 6 + 0.3);
+        g_tailTipAngle = 20 + 2 * Math.sin(sleepProgress * Math.PI * 6 + 0.6);
       }
     }
   }
@@ -260,14 +273,17 @@ function updateAnimationAngles() {
     g_tailSegment2Angle = (10*Math.sin(3*g_seconds + 0.5));
     g_tailTipAngle = (5*Math.sin(3*g_seconds + 1.0));
 
-    g_tailYAngle = (10*Math.sin(2*g_seconds + 0.7));
   }
   if (g_legsAnimation) {
     g_frontLeftLegAngle = (25*Math.sin(3*g_seconds));
     g_frontRightLegAngle = (25*Math.sin(3*g_seconds + Math.PI));
-    g_backLeftLegAngle = (25*Math.sin(3*g_seconds));
-    g_backRightLegAngle = (25*Math.sin(3*g_seconds + Math.PI));
-    
+    g_backLeftLegAngle = (25*Math.sin(3*g_seconds+ Math.PI));
+    g_backRightLegAngle = (25*Math.sin(3*g_seconds));
+    g_tailAngle = (5*Math.sin(3*g_seconds));
+    g_tailSegment2Angle = (10*Math.sin(3*g_seconds + 0.5));
+    g_tailTipAngle = (5*Math.sin(3*g_seconds + 1.0));    
+    g_tailYAngle = (10*Math.sin(2*g_seconds + 0.7));
+
   }
 }
 
