@@ -1,0 +1,96 @@
+<!-- 
+ Jenny Chen
+ jchen679@ucsc.edu
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JC Blocky Animal</title>
+    <style>
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <p id="numdot"> XXX </p>
+    <div class="row">
+      Camera Angle <input type="range" min="0" max="360" value="5" class="slider" id="angleSlide">
+    </div>
+    <div class="row">
+      Head Tilt<input type="range" min="-20" max="20" value="0" class="slider" id="headSlide">
+      Animation: 
+      <button type="button" id="animationHeadOnButton">ON</button>
+      <button type="button" id="animationHeadOffButton">OFF</button>
+    </div>
+    <div class="row">
+      Head Turn (up down)<input type="range" min="-45" max="25" value="0" class="slider" id="headYSlide">
+      Head Turn (left right)<input type="range" min="-45" max="45" value="0" class="slider" id="headXSlide">
+    </div>
+    <div class="row">
+      Body <input type="range" min="-45" max="45" value="0" class="slider" id="bodySlide">
+      Animation: 
+      <button type="button" id="animationBodyOnButton">ON</button>
+      <button type="button" id="animationBodyOffButton">OFF</button>
+    </div>
+    <div class="row">
+      Tail <input type="range" min="0" max="45" value="0" class="slider" id="tailSlide">
+      Animation: 
+      <button type="button" id="animationTailOnButton">ON</button>
+      <button type="button" id="animationTailOffButton">OFF</button>
+    </div>
+    <div class="row">
+      Tail 2<input type="range" min="-45" max="45" value="0" class="slider" id="tail2Slide">
+    </div>
+    <div class="row">
+      Tail 3<input type="range" min="-45" max="45" value="0" class="slider" id="tail3Slide">
+    </div>
+    <div class="row">
+      Tail Height <input type="range" min="-30" max="30" value="0" class="slider" id="tailYSlide">
+    </div>
+    <div class="row">
+      Walk: 
+      <button type="button" id="animationLegsOnButton">ON</button>
+      <button type="button" id="animationLegsOffButton">OFF</button>
+    </div>
+    <div class="row">
+      Front Left Leg <input type="range" min="-45" max="45" value="0" class="slider" id="frontLeftLegSlide">
+      Front Right Leg <input type="range" min="-45" max="45" value="0" class="slider" id="frontRightLegSlide">
+    </div>
+    <div class="row">
+      Back Left Leg <input type="range" min="-45" max="45" value="0" class="slider" id="backLeftLegSlide">
+      Back Right Leg <input type="range" min="-45" max="45" value="0" class="slider" id="backRightLegSlide">
+    </div>
+
+    <!-- <div class="row">
+      Yellow <input type="range" min="-45" max="45" value="0" class="slider" id="yellowSlide">
+      Animation: 
+      <button type="button" id="animationYellowOnButton">ON</button>
+      <button type="button" id="animationYellowOffButton">OFF</button>
+    </div>
+    <div class="row">
+      Magenta <input type="range" min="-45" max="45" value="0" class="slider" id="magentaSlide">
+      Animation: 
+      <button type="button" id="animationMagentaOnButton">ON</button>
+      <button type="button" id="animationMagentaOffButton">OFF</button>
+    </div> -->
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix.js"></script>
+    <script src="BlockyAnimal.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Cone.js"></script>
+  </body>
+</html>
